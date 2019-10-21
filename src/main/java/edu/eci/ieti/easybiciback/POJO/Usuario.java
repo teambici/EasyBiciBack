@@ -11,7 +11,7 @@ public class Usuario {
     private String correo;
     private String tarjeta;
     private Double puntuacion;
-    private int[] ubicacion;
+    private Ubicacion ubicacion;
     private String documento;
     private String contrasena;
     
@@ -19,7 +19,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String correo, String tarjeta, Double puntuacion, int[] ubicacion, String documento,
+    public Usuario(String nombre, String correo, String tarjeta, Double puntuacion, Ubicacion ubicacion, String documento,
             String contrasena) {
         this.nombre = nombre;
         this.correo = correo;
@@ -62,11 +62,11 @@ public class Usuario {
         this.puntuacion = puntuacion;
     }
 
-    public int[] getUbicacion() {
+    public Ubicacion getUbicacion() {
         return ubicacion;
     }
 
-    public void setUbicacion(int[] ubicacion) {
+    public void setUbicacion(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
     }
 

@@ -16,11 +16,11 @@ public class Mongoconfig {
     public MongoDbFactory mongoDbFactory() throws Exception {
 
          MongoClientURI uri = new MongoClientURI(
-        "mongodb+srv://UsuarioF:ctG7ni8BmhUJ6QGO@datatask-ceboq.mongodb.net/test?retryWrites=true&w=majority");
+        "mongodb+srv://User1:<password>@easybici-337dh.mongodb.net/EASYBICI?retryWrites=true&w=majority");
 
         MongoClient mongoClient = new MongoClient(uri);
 
-        return new SimpleMongoDbFactory( mongoClient, "test");
+        return new SimpleMongoDbFactory( mongoClient, "EASYBICI");
 
     }
 
