@@ -1,4 +1,4 @@
-package edu.eci.ieti.easybiciback.Services;
+package edu.eci.ieti.easybiciback.Services.Implements;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import edu.eci.ieti.easybiciback.Config.Mongoconfig;
 import edu.eci.ieti.easybiciback.POJO.Usuario;
 import edu.eci.ieti.easybiciback.Repository.usuarioRepository;
+import edu.eci.ieti.easybiciback.Services.UserServices;
 
 @Component
 public class UserServiceImpl implements UserServices {

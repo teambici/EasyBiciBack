@@ -11,9 +11,19 @@ public class Cicla {
     private Double puntuacion;
     private String imagen;
     private String hogar;
+    private Boolean disponible;
 
     public Cicla() {
     }
+    
+    public Cicla(String descripcion, Double puntuacion, String imagen, String hogar, Boolean disponible) {
+        this.descripcion = descripcion;
+        this.puntuacion = puntuacion;
+        this.imagen = imagen;
+        this.hogar = hogar;
+        this.disponible = disponible;
+    }
+
 
     public String getId() {
         return id;
@@ -54,5 +64,16 @@ public class Cicla {
     public void setHogar(String dueño) {
         this.hogar = hogar;
     }
+
+    public Boolean getDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(Boolean disponible) {
+        this.disponible = disponible;
+    }
+
+  
+   
     
 }

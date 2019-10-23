@@ -9,5 +9,26 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Hogar {
     @Id
     private String id;
+    private String IdDueño;
+
+    public Hogar(String idDueño) {
+        IdDueño = idDueño;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getIdDueño() {
+        return IdDueño;
+    }
+
+    public void setIdDueño(String idDueño) {
+        IdDueño = idDueño;
+    }
     
 }
