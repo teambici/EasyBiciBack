@@ -44,6 +44,17 @@ public class CiclaController {
 		}
 
 	}
+	@RequestMapping(value = "CiclaC/{correo}", method = RequestMethod.GET)
+	public ResponseEntity<?> getByDueno(@PathVariable("correo") String correo) {
+		try {			
+			return new ResponseEntity<>(ciclaServices.getbyDueno(correo),HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<>("error", HttpStatus.NOT_FOUND);
+
+		}
+
+	}
+
 
 	@RequestMapping(value = "/Cicla", method = RequestMethod.POST)
 	public ResponseEntity<?> saveCicla(@RequestBody Cicla c) {

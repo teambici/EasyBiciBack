@@ -45,7 +45,7 @@ public class CiclaServiceImpl implements CiclaServices {
 
     @Override
     public Cicla createCicla(Cicla cicla) {
-        return ciclaRepo.save(new Cicla(cicla.getDescripcion(), cicla.getPuntuacion(), cicla.getImagen(),cicla.getHogar(),cicla.getDisponible()));
+        return ciclaRepo.save(new Cicla(cicla.getDescripcion(), cicla.getPuntuacion(), cicla.getImagen(),cicla.getDisponible(),cicla.getDueno()));
     }
 
     @Override
@@ -56,7 +56,7 @@ public class CiclaServiceImpl implements CiclaServices {
         cicla2.setDescripcion(cicla.getDescripcion());
         cicla2.setDisponible(cicla.getDisponible());
         cicla2.setImagen(cicla.getImagen());
-        cicla2.setHogar(cicla.getHogar());
+        cicla2.setDueno(cicla.getDueno());
         cicla2.setPuntuacion(cicla.getPuntuacion());
         mongoOperation.save(cicla2);
         return cicla2;
@@ -70,6 +70,12 @@ public class CiclaServiceImpl implements CiclaServices {
         query.addCriteria(Criteria.where("id").is(ciclaId));
         mongoOperation.remove(query, Cicla.class);
 		
+    }
+    public List<Cicla> getbyDueno(String correo){
+        Query q=new Query();
+        q.addCriteria(Criteria.where("dueno").is(correo));
+        List<Cicla> ciclas= mongoOperation.find(q,Cicla.class);
+        return ciclas;
     }
 
 }

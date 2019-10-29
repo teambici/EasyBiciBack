@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import edu.eci.ieti.easybiciback.POJO.Cicla;
-import edu.eci.ieti.easybiciback.POJO.Usuario;
 
 @Service
 public interface CiclaServices {
@@ -18,4 +17,6 @@ public interface CiclaServices {
     Cicla updateCicla(Cicla cicla);
     
     void removeCicla(String ciclaId);
+    
+    List<Cicla> getbyDueno(String correo);
 }

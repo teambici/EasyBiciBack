@@ -10,20 +10,13 @@ public class Cicla {
     private String descripcion;
     private Double puntuacion;
     private String imagen;
-    private String hogar;
     private Boolean disponible;
+    private String dueno;
 
     public Cicla() {
     }
     
-    public Cicla(String descripcion, Double puntuacion, String imagen, String hogar, Boolean disponible) {
-        this.descripcion = descripcion;
-        this.puntuacion = puntuacion;
-        this.imagen = imagen;
-        this.hogar = hogar;
-        this.disponible = disponible;
-    }
-
+  
 
     public String getId() {
         return id;
@@ -56,21 +49,33 @@ public class Cicla {
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
-
-    public String getHogar() {
-        return hogar;
-    }
-
-    public void setHogar(String dueño) {
-        this.hogar = hogar;
-    }
-
     public Boolean getDisponible() {
         return disponible;
     }
 
     public void setDisponible(Boolean disponible) {
         this.disponible = disponible;
+    }
+
+
+
+	public String getDueno() {
+		return dueno;
+	}
+
+
+
+	public void setDueno(String dueno) {
+		this.dueno = dueno;
+	}
+
+    public Cicla( String descripcion, Double puntuacion, String imagen, Boolean disponible, String dueno) {
+        
+        this.descripcion = descripcion;
+        this.puntuacion = puntuacion;
+        this.imagen = imagen;
+        this.disponible = disponible;
+        this.dueno = dueno;
     }
 
   
