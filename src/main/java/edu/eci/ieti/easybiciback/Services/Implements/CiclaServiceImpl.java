@@ -38,7 +38,7 @@ public class CiclaServiceImpl implements CiclaServices {
     @Override
     public Cicla getUserById(String ciclaId) {
         Query query = new Query();
-        query.addCriteria(Criteria.where("id").is(ciclaId));
+        query.addCriteria(Criteria.where("_id").is(ciclaId));
         Cicla cicla = mongoOperation.findOne(query, Cicla.class);
         return cicla;
     }

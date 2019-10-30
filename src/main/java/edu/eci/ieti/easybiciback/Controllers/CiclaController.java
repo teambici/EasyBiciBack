@@ -34,7 +34,7 @@ public class CiclaController {
 	    }
     }
     @RequestMapping(value = "Cicla/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getCiclaById(@PathVariable("id") String ciclaId) {
+	public ResponseEntity<?> getCiclaById(@PathVariable("_id") String ciclaId) {
 		try {
 			
 			return new ResponseEntity<>(ciclaServices.getUserById(ciclaId),HttpStatus.CREATED);
