@@ -18,6 +18,7 @@ import edu.eci.ieti.easybiciback.Repository.ciclaRepository;
 import edu.eci.ieti.easybiciback.Repository.usuarioRepository;
 import edu.eci.ieti.easybiciback.Services.CiclaServices;
 import edu.eci.ieti.easybiciback.Services.UserServices;
+import org.bson.types.ObjectId;
 
 @Component
 public class CiclaServiceImpl implements CiclaServices {
@@ -38,7 +39,7 @@ public class CiclaServiceImpl implements CiclaServices {
     @Override
     public Cicla getUserById(String ciclaId) {
         Query query = new Query();
-        query.addCriteria(Criteria.where("_id").is(ciclaId));
+        query.addCriteria(Criteria.where("_id").is(new ObjectId(ciclaId)));
         Cicla cicla = mongoOperation.findOne(query, Cicla.class);
         return cicla;
     }

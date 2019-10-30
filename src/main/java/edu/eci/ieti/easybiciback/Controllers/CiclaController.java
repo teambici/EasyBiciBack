@@ -33,8 +33,8 @@ public class CiclaController {
 	        return new ResponseEntity<>("Not Found",HttpStatus.NOT_FOUND);
 	    }
     }
-    @RequestMapping(value = "Cicla/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getCiclaById(@PathVariable("_id") String ciclaId) {
+    @RequestMapping(value = "/Cicla/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getCiclaById(@PathVariable("id") String ciclaId) {
 		try {
 			
 			return new ResponseEntity<>(ciclaServices.getUserById(ciclaId),HttpStatus.CREATED);
@@ -44,7 +44,7 @@ public class CiclaController {
 		}
 
 	}
-	@RequestMapping(value = "Cicla/{correo}", method = RequestMethod.GET)
+	@RequestMapping(value = "/Cicla/cos/{correo}", method = RequestMethod.GET)
 	public ResponseEntity<?> getByDueno(@PathVariable("correo") String correo) {
 		try {			
 			return new ResponseEntity<>(ciclaServices.getbyDueno(correo),HttpStatus.CREATED);
