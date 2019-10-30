@@ -45,7 +45,7 @@ public class CiclaServiceImpl implements CiclaServices {
 
     @Override
     public Cicla createCicla(Cicla cicla) {
-        return ciclaRepo.save(new Cicla(cicla.getDescripcion(), cicla.getPuntuacion(), cicla.getImagen(),cicla.getDisponible(),cicla.getDueno()));
+        return ciclaRepo.save(new Cicla(cicla.getDescripcion(), cicla.getPuntuacion(), cicla.getImagen(),cicla.getDisponible(),cicla.getDueno(),cicla.getTipo(),cicla.getFechamante()));
     }
 
     @Override
@@ -58,6 +58,8 @@ public class CiclaServiceImpl implements CiclaServices {
         cicla2.setImagen(cicla.getImagen());
         cicla2.setDueno(cicla.getDueno());
         cicla2.setPuntuacion(cicla.getPuntuacion());
+        cicla2.setTipo(cicla.getTipo());
+        cicla2.setFechamante(cicla.getFechamante());
         mongoOperation.save(cicla2);
         return cicla2;
 

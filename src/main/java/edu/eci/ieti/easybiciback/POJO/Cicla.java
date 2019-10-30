@@ -1,5 +1,6 @@
 package edu.eci.ieti.easybiciback.POJO;
 
+import java.util.Date;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,6 +13,8 @@ public class Cicla {
     private String imagen;
     private Boolean disponible;
     private String dueno;
+    private String tipo;
+    private Date fechamante; 
 
     public Cicla() {
     }
@@ -68,16 +71,37 @@ public class Cicla {
 	public void setDueno(String dueno) {
 		this.dueno = dueno;
 	}
+        
+    public String getTipo() {
+        return tipo;
+    }
 
-    public Cicla( String descripcion, Double puntuacion, String imagen, Boolean disponible, String dueno) {
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Date getFechamante() {
+        return fechamante;
+    }
+
+    public void setFechamante(Date fechamante) {
+        this.fechamante = fechamante;
+    }
+
+    public Cicla( String descripcion, Double puntuacion, String imagen, Boolean disponible, String dueno, String tipo, Date fechamante) {
         
         this.descripcion = descripcion;
         this.puntuacion = puntuacion;
         this.imagen = imagen;
         this.disponible = disponible;
         this.dueno = dueno;
+        this.tipo = tipo;
+        this.fechamante = fechamante;
     }
 
+    
+    
+    
   
    
     
