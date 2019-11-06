@@ -15,6 +15,7 @@ public class Cicla {
     private String dueno;
     private String tipo;
     private Date fechamante; 
+    private String fotocicla;
 
     public Cicla() {
     }
@@ -97,6 +98,14 @@ public class Cicla {
         this.dueno = dueno;
         this.tipo = tipo;
         this.fechamante = fechamante;
+    }
+
+    public String getFotocicla() {
+        return fotocicla;
+    }
+
+    public void setFotocicla(String fotocicla) {
+        this.fotocicla = fotocicla;
     }
 
     
