@@ -6,13 +6,20 @@
 package edu.eci.ieti.easybiciback.Services.Implements;
 
 import edu.eci.ieti.easybiciback.Config.Mongoconfig;
+import edu.eci.ieti.easybiciback.Firebase.firebaseMessagingSnippets;
 import edu.eci.ieti.easybiciback.POJO.Cicla;
 import edu.eci.ieti.easybiciback.POJO.Reserva;
+import edu.eci.ieti.easybiciback.POJO.Usuario;
 import edu.eci.ieti.easybiciback.Repository.ciclaRepository;
 import edu.eci.ieti.easybiciback.Repository.reservaRepository;
 import edu.eci.ieti.easybiciback.Services.ReservaServices;
+
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+
+import com.google.firebase.messaging.FirebaseMessagingException;
+
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -27,17 +34,18 @@ import org.springframework.stereotype.Component;
  * @author 2112107
  */
 @Component
-public class ReservaServiceImpl  implements ReservaServices{
+public class ReservaServiceImpl implements ReservaServices {
     @Autowired
     reservaRepository reservaRepo;
+    private firebaseMessagingSnippets firebase;
     private ApplicationContext applicationContext = new AnnotationConfigApplicationContext(Mongoconfig.class);
     private MongoOperations mongoOperation = (MongoOperations) applicationContext.getBean("mongoTemplate");
 
     @Override
     public List<Reserva> getReservaList() {
         Query query = new Query();
-        List<Reserva> reserva= mongoOperation.find(query, Reserva.class);
-        return reserva;    
+        List<Reserva> reserva = mongoOperation.find(query, Reserva.class);
+        return reserva;
     }
 
     @Override
@@ -46,8 +54,7 @@ public class ReservaServiceImpl  implements ReservaServices{
         query.addCriteria(Criteria.where("id").is(reservaId));
         Reserva reseva = mongoOperation.findOne(query, Reserva.class);
         return reseva;
-    }   
-
+    }
 
     @Override
     public void removeReserva(String reservaId) {
@@ -55,8 +62,6 @@ public class ReservaServiceImpl  implements ReservaServices{
         query.addCriteria(Criteria.where("id").is(reservaId));
         mongoOperation.remove(query, Reserva.class);
     }
-
-
 
     @Override
     public List<Reserva> getReservaByUser(String userId) {
@@ -74,10 +79,19 @@ public class ReservaServiceImpl  implements ReservaServices{
         return reseva;
     }
 
-   
-
     @Override
     public Reserva createReserva(Reserva reserva) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("bici").is(reserva.getBici()));
+        Cicla bici = mongoOperation.findOne(query, Cicla.class);
+        Query query2 = new Query();
+        query2.addCriteria(Criteria.where("correo").is(bici.getDueno()));
+        Usuario user = mongoOperation.findOne(query2, Usuario.class);
+        try {
+            firebase.sendMsg(user.getNotification());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return reservaRepo.save(new Reserva(reserva.getId(),reserva.getBici(),reserva.getUser(),reserva.getHoraInicio(),reserva.getHoraFin(),reserva.getTotal()));
     }
 
