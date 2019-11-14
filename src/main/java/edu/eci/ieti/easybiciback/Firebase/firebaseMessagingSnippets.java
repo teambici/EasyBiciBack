@@ -26,6 +26,8 @@ public class firebaseMessagingSnippets {
             JSONObject msg=new JSONObject();
             msg.put("body",email +"quiere alquilar tu bicicleta");
             msg.put("title","Peticion de Reserva");
+            msg.put("icon","https://easybiciback.herokuapp.com/Image/fd8dd2-d803-61be-1bba-8f8b85f3553");
+            msg.put("image","https://easybiciback.herokuapp.com/Image/fd8dd2-d803-61be-1bba-8f8b85f3553");
             JSONObject parent=new JSONObject();
 
             parent.put("to", Token);
