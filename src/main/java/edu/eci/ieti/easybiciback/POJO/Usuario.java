@@ -14,13 +14,14 @@ public class Usuario {
     private Ubicacion ubicacion;
     private String documento;
     private String contrasena;
+    private String notification;
     
 
     public Usuario() {
     }
 
     public Usuario(String nombre, String correo, String tarjeta, Double puntuacion, Ubicacion ubicacion, String documento,
-            String contrasena) {
+            String contrasena,String notification) {
         this.nombre = nombre;
         this.correo = correo;
         this.tarjeta = tarjeta;
@@ -28,6 +29,7 @@ public class Usuario {
         this.ubicacion = ubicacion;
         this.documento = documento;
         this.contrasena = contrasena;
+        this.notification= notification;
     }
 
     public String getNombre() {
@@ -84,6 +86,22 @@ public class Usuario {
 
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNotification() {
+        return notification;
+    }
+
+    public void setNotification(String notification) {
+        this.notification = notification;
     }
     
 }
