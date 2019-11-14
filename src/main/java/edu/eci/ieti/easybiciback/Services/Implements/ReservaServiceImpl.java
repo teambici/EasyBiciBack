@@ -12,7 +12,9 @@ import edu.eci.ieti.easybiciback.POJO.Reserva;
 import edu.eci.ieti.easybiciback.POJO.Usuario;
 import edu.eci.ieti.easybiciback.Repository.ciclaRepository;
 import edu.eci.ieti.easybiciback.Repository.reservaRepository;
+import edu.eci.ieti.easybiciback.Services.CiclaServices;
 import edu.eci.ieti.easybiciback.Services.ReservaServices;
+import edu.eci.ieti.easybiciback.Services.UserServices;
 
 import java.io.IOException;
 import java.util.Date;
@@ -37,7 +39,9 @@ import org.springframework.stereotype.Component;
 public class ReservaServiceImpl implements ReservaServices {
     @Autowired
     reservaRepository reservaRepo;
-    private firebaseMessagingSnippets firebase;
+    private firebaseMessagingSnippets firebase = new firebaseMessagingSnippets();
+    CiclaServices ciclaSer = new CiclaServiceImpl();
+    UserServices UserSer = new UserServiceImpl();
     private ApplicationContext applicationContext = new AnnotationConfigApplicationContext(Mongoconfig.class);
     private MongoOperations mongoOperation = (MongoOperations) applicationContext.getBean("mongoTemplate");
 
@@ -81,14 +85,10 @@ public class ReservaServiceImpl implements ReservaServices {
 
     @Override
     public Reserva createReserva(Reserva reserva) {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("bici").is(reserva.getBici()));
-        Cicla bici = mongoOperation.findOne(query, Cicla.class);
-        Query query2 = new Query();
-        query2.addCriteria(Criteria.where("correo").is(bici.getDueno()));
-        Usuario user = mongoOperation.findOne(query2, Usuario.class);
+        Cicla cicla =ciclaSer.getUserById(reserva.getBici());
+        Usuario user= UserSer.getUserById(cicla.getDueno());
         try {
-            firebase.sendMsg(user.getNotification());
+            firebase.sendnoti(user.getNotification(),user.getCorreo());
         } catch (IOException e) {
             e.printStackTrace();
         }
