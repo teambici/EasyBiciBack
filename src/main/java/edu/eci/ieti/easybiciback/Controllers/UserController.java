@@ -26,8 +26,6 @@ public class UserController {
     @Autowired
 	UserServices UserServices;
 	
-	
-	
 	@RequestMapping(value="/User",method = RequestMethod.GET)
 	public ResponseEntity<?> listAllUsers(){
 	    try {
@@ -96,8 +94,7 @@ public class UserController {
         String password = login.getContrasena();
 
         //TODO implement logic to verify user credentials
-		Usuario user = UserServices.getUserById(login.getCorreo());
-		
+	Usuario user = UserServices.getUserById(login.getCorreo());	
 
         if ( user == null )
         {
@@ -110,6 +107,8 @@ public class UserController {
         {
             throw new ServletException( "Invalid login. Please check your name and password." );
         }
+        user.setNotification(login.getNotification());
+        UserServices.updateUser(user);
         //
         jwtToken = Jwts.builder().setSubject( username ).claim( "roles", "user" ).setIssuedAt( new Date() ).signWith(
             SignatureAlgorithm.HS256, "secretkey" ).compact();
