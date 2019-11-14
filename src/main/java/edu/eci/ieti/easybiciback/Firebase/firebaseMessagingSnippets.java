@@ -29,9 +29,9 @@ public class firebaseMessagingSnippets {
             msg.put("icon","https://easybiciback.herokuapp.com/Image/fd8dd2-d803-61be-1bba-8f8b85f3553");
             msg.put("image","https://easybiciback.herokuapp.com/Image/fd8dd2-d803-61be-1bba-8f8b85f3553");
             JSONObject parent=new JSONObject();
-
             parent.put("to", Token);
             parent.put("notification", msg);
+            parent.put("link","https://easybicii.herokuapp.com/notifications");
             con.setDoOutput(true);
         OutputStreamWriter os = new OutputStreamWriter(con.getOutputStream());
         os.write(parent.toString());
