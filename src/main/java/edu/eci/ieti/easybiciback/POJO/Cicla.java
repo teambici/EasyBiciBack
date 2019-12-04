@@ -17,7 +17,7 @@ public class Cicla {
     private Date fechamante;
     private Integer precio;
     private String marca;
-    private String Color;
+    private String color;
     private Ubicacion ubicacion;
 
     public Cicla() {
@@ -42,7 +42,7 @@ public class Cicla {
         this.fechamante = fechamante;
         this.precio = precio;
         this.marca = marca;
-        this.Color = Color;
+        this.color = Color;
         this.ubicacion=ubicacion;
     }
 
@@ -63,11 +63,11 @@ public class Cicla {
     }
 
     public String getColor() {
-        return Color;
+        return color;
     }
 
     public void setColor(String Color) {
-        this.Color = Color;
+        this.color = Color;
     }
 
     
