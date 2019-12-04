@@ -14,11 +14,62 @@ public class Cicla {
     private Boolean disponible;
     private String dueno;
     private String tipo;
-    private Date fechamante; 
-    private String fotocicla;
+    private Date fechamante;
+    private Integer precio;
+    private String marca;
+    private String Color;
+    private Ubicacion ubicacion;
 
     public Cicla() {
     }
+
+    public Integer getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Integer precio) {
+        this.precio = precio;
+    }
+
+    public Cicla(String id, String descripcion, Double puntuacion, String imagen, Boolean disponible, String dueno, String tipo, Date fechamante, Integer precio, String marca, String Color,Ubicacion ubicacion) {
+        this.id = id;
+        this.descripcion = descripcion;
+        this.puntuacion = puntuacion;
+        this.imagen = imagen;
+        this.disponible = disponible;
+        this.dueno = dueno;
+        this.tipo = tipo;
+        this.fechamante = fechamante;
+        this.precio = precio;
+        this.marca = marca;
+        this.Color = Color;
+        this.ubicacion=ubicacion;
+    }
+
+    public Ubicacion getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getColor() {
+        return Color;
+    }
+
+    public void setColor(String Color) {
+        this.Color = Color;
+    }
+
     
   
 
@@ -89,24 +140,7 @@ public class Cicla {
         this.fechamante = fechamante;
     }
 
-    public Cicla( String descripcion, Double puntuacion, String imagen, Boolean disponible, String dueno, String tipo, Date fechamante) {
-        
-        this.descripcion = descripcion;
-        this.puntuacion = puntuacion;
-        this.imagen = imagen;
-        this.disponible = disponible;
-        this.dueno = dueno;
-        this.tipo = tipo;
-        this.fechamante = fechamante;
-    }
-
-    public String getFotocicla() {
-        return fotocicla;
-    }
-
-    public void setFotocicla(String fotocicla) {
-        this.fotocicla = fotocicla;
-    }
+ 
 
     
     

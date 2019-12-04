@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserServices {
 
     @Override
     public Usuario createUser(Usuario user) {
-        return usuarioRepo.save(new Usuario(user.getNombre(), user.getCorreo(), user.getTarjeta(),user.getPuntuacion(),user.getUbicacion(),user.getDocumento(), user.getContrasena(),user.getNotification()));
+        return usuarioRepo.save(new Usuario(user.getNombre(), user.getCorreo(), user.getTarjeta(),user.getPuntuacion(),user.getDocumento(), user.getContrasena(),user.getNotification()));
     }
 
     @Override

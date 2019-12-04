@@ -46,7 +46,9 @@ public class CiclaServiceImpl implements CiclaServices {
 
     @Override
     public Cicla createCicla(Cicla cicla) {
-        return ciclaRepo.save(new Cicla(cicla.getDescripcion(), cicla.getPuntuacion(), cicla.getImagen(),cicla.getDisponible(),cicla.getDueno(),cicla.getTipo(),cicla.getFechamante()));
+        Double b=0.0;
+        Boolean x=true;
+        return ciclaRepo.save(new Cicla(cicla.getId(),cicla.getDescripcion(),b,cicla.getImagen(),x,cicla.getDueno(),cicla.getTipo(),cicla.getFechamante(),cicla.getPrecio(),cicla.getMarca(),cicla.getColor(),cicla.getUbicacion()));
     }
 
     @Override

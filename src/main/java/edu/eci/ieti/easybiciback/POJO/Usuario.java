@@ -11,7 +11,6 @@ public class Usuario {
     private String correo;
     private String tarjeta;
     private Double puntuacion;
-    private Ubicacion ubicacion;
     private String documento;
     private String contrasena;
     private String notification;
@@ -20,13 +19,12 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String correo, String tarjeta, Double puntuacion, Ubicacion ubicacion, String documento,
+    public Usuario(String nombre, String correo, String tarjeta, Double puntuacion,  String documento,
             String contrasena,String notification) {
         this.nombre = nombre;
         this.correo = correo;
         this.tarjeta = tarjeta;
         this.puntuacion = puntuacion;
-        this.ubicacion = ubicacion;
         this.documento = documento;
         this.contrasena = contrasena;
         this.notification= notification;
@@ -64,13 +62,6 @@ public class Usuario {
         this.puntuacion = puntuacion;
     }
 
-    public Ubicacion getUbicacion() {
-        return ubicacion;
-    }
-
-    public void setUbicacion(Ubicacion ubicacion) {
-        this.ubicacion = ubicacion;
-    }
 
     public String getDocumento() {
         return documento;
