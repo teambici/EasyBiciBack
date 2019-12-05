@@ -81,7 +81,7 @@ public class ReservaServiceImpl implements ReservaServices {
         List<Cicla> cicla = ciclaSer.getbyDueno(userId);
         List<Reserva> answer = new ArrayList<>() ;
         for (Reserva i: reserva) {
-           if(userId== i.getUser()){
+           if(userId.equals(i.getUser())){
                answer.add(i);
            }
            for (Cicla j:cicla ){
