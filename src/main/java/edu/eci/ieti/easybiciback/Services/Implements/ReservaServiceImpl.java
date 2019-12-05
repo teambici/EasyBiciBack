@@ -88,7 +88,7 @@ public class ReservaServiceImpl implements ReservaServices {
         Cicla cicla =ciclaSer.getUserById(reserva.getBici());
         Usuario user= UserSer.getUserById(cicla.getDueno());
         try {
-            firebase.sendnoti(user.getNotification(),user.getCorreo());
+            firebase.sendnoti(user.getNotification(),user.getCorreo(),cicla.getImagen());
         } catch (IOException e) {
             e.printStackTrace();
         }

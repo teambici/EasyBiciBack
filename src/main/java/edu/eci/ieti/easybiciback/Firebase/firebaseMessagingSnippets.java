@@ -16,7 +16,7 @@ import org.json.simple.JSONObject;
  */
 public class firebaseMessagingSnippets {
     
-    public void sendnoti(String Token, String email) throws IOException{
+    public void sendnoti(String Token, String email,String imagen) throws IOException{
         String url = "https://fcm.googleapis.com/fcm/send";
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -27,7 +27,7 @@ public class firebaseMessagingSnippets {
             msg.put("body",email +"quiere alquilar tu bicicleta");
             msg.put("title","Peticion de Reserva");
             msg.put("icon","https://easybiciback.herokuapp.com/Image/bcfed6-72ac-d21-3448-000d201bd534");
-            msg.put("image","https://easybiciback.herokuapp.com/Image/fd8dd2-d803-61be-1bba-8f8b85f3553");
+            msg.put("image","https://easybiciback.herokuapp.com/Image/"+imagen);
             JSONObject parent=new JSONObject();
             parent.put("to", Token);
             parent.put("notification", msg);
