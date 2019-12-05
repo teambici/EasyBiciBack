@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.google.firebase.messaging.FirebaseMessagingException;
+import java.util.ArrayList;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,13 +67,31 @@ public class ReservaServiceImpl implements ReservaServices {
         query.addCriteria(Criteria.where("id").is(reservaId));
         mongoOperation.remove(query, Reserva.class);
     }
-
-    @Override
+      @Override
     public List<Reserva> getReservaByUser(String userId) {
         Query query = new Query();
         query.addCriteria(Criteria.where("user").is(userId));
         List<Reserva> reseva = mongoOperation.find(query, Reserva.class);
         return reseva;
+    }
+    @Override
+    public List<Reserva> getReservaUser(String userId) {
+         Query query = new Query();
+        List<Reserva> reserva = mongoOperation.find(query, Reserva.class);
+        List<Cicla> cicla = ciclaSer.getbyDueno(userId);
+        List<Reserva> answer = new ArrayList<>() ;
+        for (Reserva i: reserva) {
+           if(userId== i.getUser()){
+               answer.add(i);
+           }
+           for (Cicla j:cicla ){
+               if(i.getBici().equals(j.getBikeCode())){
+                   answer.add(i);
+               }
+           } 
+        }
+ 
+        return reserva;
     }
 
     @Override

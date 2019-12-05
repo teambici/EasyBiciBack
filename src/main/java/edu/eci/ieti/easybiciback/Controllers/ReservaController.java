@@ -81,4 +81,12 @@ public class ReservaController {
 		}
 
     }
+    @RequestMapping(value="/Reserva/alluser/{userId}",method = RequestMethod.GET)
+	public ResponseEntity<?> listAllReservesuser(@PathVariable("userId") String userId){
+	    try {
+	        return new ResponseEntity<>(ReservaServices.getReservaUser(userId),HttpStatus.ACCEPTED);
+	    } catch (Exception ex) {
+	        return new ResponseEntity<>("Not Found",HttpStatus.NOT_FOUND);
+	    }
+    }  
 }
