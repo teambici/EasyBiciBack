@@ -48,7 +48,7 @@ public class CiclaServiceImpl implements CiclaServices {
     public Cicla createCicla(Cicla cicla) {
         Double b=0.0;
         Boolean x=true;
-        return ciclaRepo.save(new Cicla(cicla.getId(),cicla.getDescripcion(),b,cicla.getImagen(),x,cicla.getDueno(),cicla.getTipo(),cicla.getFechamante(),cicla.getPrecio(),cicla.getMarca(),cicla.getColor(),cicla.getUbicacion()));
+        return ciclaRepo.save(new Cicla(cicla.getId(),cicla.getBikeCode(),cicla.getDescripcion(),b,cicla.getImagen(),x,cicla.getDueno(),cicla.getTipo(),cicla.getFechamante(),cicla.getPrecio(),cicla.getMarca(),cicla.getColor(),cicla.getUbicacion()));
     }
 
     @Override

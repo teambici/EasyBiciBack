@@ -19,6 +19,7 @@ public class Cicla {
     private String marca;
     private String color;
     private Ubicacion ubicacion;
+    private String bikeCode;
 
     public Cicla() {
     }
@@ -31,8 +32,17 @@ public class Cicla {
         this.precio = precio;
     }
 
-    public Cicla(String id, String descripcion, Double puntuacion, String imagen, Boolean disponible, String dueno, String tipo, Date fechamante, Integer precio, String marca, String Color,Ubicacion ubicacion) {
+    public String getBikeCode() {
+        return bikeCode;
+    }
+
+    public void setBikeCode(String bikeCode) {
+        this.bikeCode = bikeCode;
+    }
+
+    public Cicla(String id,String bikecode, String descripcion, Double puntuacion, String imagen, Boolean disponible, String dueno, String tipo, Date fechamante, Integer precio, String marca, String Color,Ubicacion ubicacion) {
         this.id = id;
+        this.bikeCode=bikecode;
         this.descripcion = descripcion;
         this.puntuacion = puntuacion;
         this.imagen = imagen;
