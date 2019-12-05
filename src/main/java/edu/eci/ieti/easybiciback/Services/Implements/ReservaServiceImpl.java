@@ -92,7 +92,7 @@ public class ReservaServiceImpl implements ReservaServices {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return reservaRepo.save(new Reserva(reserva.getId(),reserva.getBici(),reserva.getUser(),reserva.getHoraInicio(),reserva.getHoraFin(),reserva.getTotal()));
+        return reservaRepo.save(new Reserva(reserva.getId(),reserva.getBici(),reserva.getUser(),reserva.getHoraInicio(),reserva.getHoraFin(),reserva.getTotal(),reserva.getEstado()));
     }
 
     @Override

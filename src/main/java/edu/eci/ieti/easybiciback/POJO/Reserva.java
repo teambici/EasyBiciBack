@@ -17,15 +17,25 @@ public class Reserva {
     private String user;
     private Date horaInicio;
     private Date horaFin;
+    private String estado;
     private float total;
     
-    public Reserva(String id, String bici, String user, Date horaInicio, Date horaFin, float total) {
+    public Reserva(String id, String bici, String user, Date horaInicio, Date horaFin, float total,String estado) {
         this.id = id;
         this.bici = bici;
         this.user = user;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
         this.total = total;
+        this.estado=estado;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public Reserva() {
