@@ -38,6 +38,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ReservaServiceImpl implements ReservaServices {
+
     @Autowired
     reservaRepository reservaRepo;
     private firebaseMessagingSnippets firebase = new firebaseMessagingSnippets();
@@ -67,30 +68,32 @@ public class ReservaServiceImpl implements ReservaServices {
         query.addCriteria(Criteria.where("id").is(reservaId));
         mongoOperation.remove(query, Reserva.class);
     }
-      @Override
+
+    @Override
     public List<Reserva> getReservaByUser(String userId) {
         Query query = new Query();
         query.addCriteria(Criteria.where("user").is(userId));
         List<Reserva> reseva = mongoOperation.find(query, Reserva.class);
         return reseva;
     }
+
     @Override
     public List<Reserva> getReservaUser(String userId) {
-         Query query = new Query();
+        Query query = new Query();
         List<Reserva> reserva = mongoOperation.find(query, Reserva.class);
         List<Cicla> cicla = ciclaSer.getbyDueno(userId);
-        List<Reserva> answer = new ArrayList<>() ;
-        for (Reserva i: reserva) {
-           if(userId.equals(i.getUser())){
-               answer.add(i);
-           }
-           for (Cicla j:cicla ){
-               if(i.getBici().equals(j.getBikeCode())){
-                   answer.add(i);
-               }
-           } 
+        List<Reserva> answer = new ArrayList<>();
+        for (Reserva i : reserva) {
+            if (userId.equals(i.getUser())) {
+                answer.add(i);
+            }
+            for (Cicla j : cicla) {
+                if (i.getBici().equals(j.getBikeCode())) {
+                    answer.add(i);
+                }
+            }
         }
- 
+
         return answer;
     }
 
@@ -104,28 +107,50 @@ public class ReservaServiceImpl implements ReservaServices {
 
     @Override
     public Reserva createReserva(Reserva reserva) {
-        Cicla cicla =ciclaSer.getUserById(reserva.getBici());
-        Usuario user= UserSer.getUserById(cicla.getDueno());
+        Cicla cicla = ciclaSer.getUserById(reserva.getBici());
+        Usuario user = UserSer.getUserById(cicla.getDueno());
         try {
-            firebase.sendnoti(user.getNotification(),user.getCorreo(),cicla.getImagen());
+            firebase.sendnoti(user.getNotification(), user.getCorreo(), cicla.getImagen());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return reservaRepo.save(new Reserva(reserva.getId(),reserva.getBici(),reserva.getUser(),reserva.getHoraInicio(),reserva.getHoraFin(),reserva.getTotal(),reserva.getEstado()));
+        return reservaRepo.save(new Reserva(reserva.getId(), reserva.getBici(), reserva.getUser(), reserva.getHoraInicio(), reserva.getHoraFin(), reserva.getTotal(), "En proceso"));
     }
 
     @Override
     public Reserva updateReserva(Reserva reserva) {
         Query query = new Query();
         query.addCriteria(Criteria.where("id").is(reserva.getId()));
-        Reserva reservaNew= mongoOperation.findOne(query, Reserva.class);
+        Reserva reservaNew = mongoOperation.findOne(query, Reserva.class);
         reservaNew.setBici(reserva.getBici());
         reservaNew.setHoraFin(reserva.getHoraFin());
         reservaNew.setHoraInicio(reserva.getHoraInicio());
         reservaNew.setUser(reserva.getUser());
-        reservaNew.setTotal(reserva.getTotal());       
+        reservaNew.setTotal(reserva.getTotal());
         mongoOperation.save(reservaNew);
         return reservaNew;
     }
-    
+
+    @Override
+    public Reserva confirmacion(Reserva reserva) {
+        Cicla cicla = ciclaSer.getUserById(reserva.getBici());
+        Usuario user = UserSer.getUserById(reserva.getUser());
+        Query query = new Query();
+        query.addCriteria(Criteria.where("id").is(reserva.getId()));
+        Reserva reservaNew = mongoOperation.findOne(query, Reserva.class);
+        reservaNew.setBici(reserva.getBici());
+        reservaNew.setHoraFin(reserva.getHoraFin());
+        reservaNew.setHoraInicio(reserva.getHoraInicio());
+        reservaNew.setUser(reserva.getUser());
+        reservaNew.setTotal(reserva.getTotal());
+        reservaNew.setEstado(reserva.getEstado());
+        mongoOperation.save(reservaNew);
+        try {
+            firebase.sendconfirmacion(user.getNotification(), user.getCorreo(), cicla.getImagen(),reserva.getEstado());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return reservaNew;
+    }
+
 }

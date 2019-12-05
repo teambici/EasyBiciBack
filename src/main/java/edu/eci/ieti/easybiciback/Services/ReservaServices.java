@@ -21,5 +21,6 @@ public interface ReservaServices {
     Reserva updateReserva (Reserva reserva);
     void removeReserva(String reservaId);
     Reserva createReserva(Reserva reserva);
-     public List<Reserva> getReservaUser(String userId);
+    List<Reserva> getReservaUser(String userId);
+    Reserva confirmacion(Reserva reserva);
 }

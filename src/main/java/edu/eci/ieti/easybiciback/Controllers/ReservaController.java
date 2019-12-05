@@ -70,6 +70,16 @@ public class ReservaController {
 		}
 
     }
+       @RequestMapping(value = "/Reserva/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<?> confirmacionReserva(@RequestBody Reserva u) {
+		try {
+			return new ResponseEntity<>(ReservaServices.confirmacion(u),HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<>("error", HttpStatus.NOT_FOUND);
+
+		}
+
+    }
         @RequestMapping(value = "/Reserva/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> removeUser(@PathVariable("id") String ReservaId) {
 		try {
